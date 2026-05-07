@@ -26,7 +26,7 @@ def fbm_2d(n, H, seed=None):
     k = np.sqrt(kx**2 + ky**2)
     k[0, 0] = 1.0  # avoid division by zero
 
-    gaussian_noise = np.random.normal(size=(n, n)) # + 1j * np.random.normal(size=(n, n))  # Generates Gaussian noise
+    gaussian_noise = np.random.normal(size=(n, n)) + 1j * np.random.normal(size=(n, n))  # Generates Gaussian noise
 
     fBm_map = np.fft.fft2(gaussian_noise)
 
@@ -50,7 +50,7 @@ def fLm_2d(n, H, alpha=1.5, beta=0.5, sigma = 1.0, pos=0, seed=0, iterations = 0
 
     a_stable_array = np.empty((n, n))
     for col in range(n):
-        a_stable_array[col] = signalz.levy_noise(n, alpha, beta, sigma, pos) # + 1j * signalz.levy_noise(n, alpha, beta, sigma, pos))
+        a_stable_array[col] = (signalz.levy_noise(n, alpha, beta, sigma, pos) + 1j * signalz.levy_noise(n, alpha, beta, sigma, pos))
 
     #a_stable_noise = (signalz.levy_noise(n*n, alpha, beta, sigma, pos) + 1j * signalz.levy_noise(n*n, alpha, beta, sigma, pos)).reshape(n, n)
 
